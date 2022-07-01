@@ -22,7 +22,19 @@
        
           <div class="lg:col-span-2">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
- 
+              <div class="md:col-span-4 mb-4">
+                {% if form.errors %}
+                <ul> 
+            
+                  {% for field in form %} 
+                  {% for error in field.errors %}
+                 <li style="color:red"class="text-red">Pic {{ error }}</li>
+                 {% endfor %}
+                 {% endfor %}
+  
+                </ul>
+              {% endif %} 
+                </div>
               <div class="md:col-span-5">
                 <label for="title">Title</label>
                 {% render_field form.title type="text"    class="h-10 w-full text-slate-500 border-slate-200 mt-1 rounded px-4 bg-gray-50 placeholder:italic placeholder:text-slate-400"  %}   
@@ -35,16 +47,16 @@
               </div>
 
               <div class="md:col-span-5 grid gap-4 gap-y-1 text-sm grid-cols-1 md:grid-cols-4 ">
-
+                
                 <div class="md:col-span-2 ">
                   <label class="mb-5" for="image">Upload An Image</label>
-                  {% render_field form.pic  class="cursor-pointer my-1 mb-2  p-3 file:px-7  file:py-2 file:bg-cyan-50 file:border-0 file:text-cyan-500 file:rounded-md  text-slate-500" %}   
+                  {% render_field form.pic type='file' class="cursor-pointer my-1 mb-2  p-3 file:px-7  file:py-2 file:bg-cyan-50 file:border-0 file:text-cyan-500 file:rounded-md  text-slate-500" %}   
                 </div>
   
   
                 <div class="md:col-span-2">
                   <label for="video">Upload a Video</label>
-                  {% render_field form.video  class="cursor-pointer my-1 mb-2  p-3 file:px-7  file:py-2 file:bg-cyan-50 file:border-0 file:text-cyan-500 file:rounded-md  text-slate-500"  %}   
+                  {% render_field form.video type='file'  class="cursor-pointer my-1 mb-2  p-3 file:px-7  file:py-2 file:bg-cyan-50 file:border-0 file:text-cyan-500 file:rounded-md  text-slate-500"  %}   
                 </div>
   
               </div>
@@ -67,12 +79,12 @@
             {% if request.resolver_match.url_name == 'post-update' %}
             <div class="md:col-span-5 text-right">
               <div class="inline-flex items-end">
-                <button type="submit"class="bg-cyan-400 mt-5 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+                <button type="submit"class="bg-cyan-400 mt-5  text-white font-bold py-2 px-4 rounded">Update</button>
               </div>
             </div>
             {% endif %} 
 
-            {% if request.resolver_match.url_name == 'post-create' %}
+            {% comment %} {% if request.resolver_match.url_name == 'post-create' %}
             <div class="md:col-span-5  border-b border-gray-100 mt-5"></div> 
             <div class="md:col-span-5 flex flex-row justify-between content-center items-center h-12 w-full">
                 <div  class="flex justify-end text-lg text-slate-500"><h2>Total Amount</h2></div>
@@ -92,7 +104,7 @@
 
               <script src="https://www.paypal.com/sdk/js?client-id=AUsbaXnO5yOWjn0S8uT-2CBqtRUhd1E2Hal7XtRM9Vs2tjxN7VxkqVeP7dKWyKc6mOLJ4LQgdhOvtB9j&vault=true&intent=subscription"
                       data-sdk-integration-source="button-factory"></script>
-                      {% endif %} 
+                      {% endif %}  {% endcomment %}
               <script>
                   paypal.Buttons({
                       style: {

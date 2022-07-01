@@ -22,15 +22,12 @@
     {% endblock searchform %} 
 {# --------------------------End---Search Form----------------------  #}
 
-
+{# --------------------------User Card Info-------------------------------  #}
  {% block aside %} 
  <div class="row-span-2 lg:visible md:flex   sm:hidden  xs:hidden  ">
- 
     <aside class="">
-    
          <div class="bg-white shadow rounded-lg  px-8 py-12 mt-4">
              <div class="flex flex-col gap-1 text-center items-center">
-        
                 <img class="h-32 w-32 p-2 rounded-lg  mb-4" src="{{ request.user.profile.image.url }}" alt="">
                 <p class="font-semibold capitalize">{{ request.user }}</p>
                  {% if request.user.profile.location %}
@@ -40,43 +37,35 @@
                 </div>
                     {% endif %}
             </div> 
-
         <div class="flex justify-evenly items-center gap-2 my-5">
             <div class="font-semibold text-center mx-4">
-                <p class="text-black">{{ request.user.profile.friends.count }}</p>
+                <p class="text-black">{{ post_count.count }}</p>
                 <span class="text-gray-400">Posts</span>
             </div>
             <div class="font-semibold text-center mx-4">
-                <p class="text-black">{{ post_count.count }}</p>
+                <p class="text-black">{{ request.user.profile.friends.count }}</p>
                 <span class="text-gray-400">Clients</span>
             </div>
         </div>
-
          <div class="flex justify-evenly items-center gap-2 my-5">
             <div class="font-semibold text-center mx-4">
                 <button type="submit"class="bg-slate-200 mt-5 hover:bg-slate-300 text-black text-sm py-2 px-4 rounded"><a href="{% url 'my_profile' %}">Profile</a></button>
-               
             </div>
-
             <div class="font-semibold text-center mx-4">
                 <button type="submit"class="bg-slate-200 mt-5 hover:bg-slate-300 text-black text-sm py-2 px-6 rounded"><a href="{% url 'edit_profile' %}">Edit</a></button>
-                
             </div>
-
          </div>
-
-     
-
     </aside>
-     
  </div>
 {% endblock aside %} 
+{# --------------------------End---User Card Info----------------------  #}
 
+{# --------------------------Clients Card Info-------------------------------  #}
 {% block side %} 
-<div class="row-span-3 lg:visible md:flex  sm:hidden  xs:hidden ">
-    <aside class="px-8">
+<div class="row-span-3 w-full justify-end  lg:visible md:flex  sm:hidden  xs:hidden ">
+    <aside class=" ">
     
-        <div class="bg-white shadow rounded-lg px-8 py-8 mt-4">
+        <div class="bg-white shadow rounded-lg px-8 py-8 my-4 ml-4">
             <div class="ml-4 my-4">
                 <span class="font-medium text-lg leading-4">My Clients ( {{ request.user.profile.friends.count }} )</span>
             </div>
@@ -84,33 +73,28 @@
             {% for friends in request.user.profile.friends.all %}
                 <div class=" flex flex-col cursor-pointer  p-4 duration-300  sm:flex-row sm:py-4 sm:px-8 hover:bg-[#f6f8f9]">
                     <div class="flex justify-between items-center text-center flex-row sm:flex-row sm:text-left">
-                    
                         <div class=" mb-2.5 sm:mb-0 sm:mr-2.5">
                             <img class='w-12 h-12 object-cover rounded-md shadow cursor-pointer' src="{{friends.image.url}}"/>
                         </div>
-
+                       {% comment %} User path  {% endcomment %}
                         <div class=" flex flex-col mb-4 sm:mb-0 sm:mr-4">
                             <a href="#" class="title font-medium no-underline">{{friends.user}}</a>
                         </div>
-
                     </div>
-
                 </div>
             {% endfor %}
-            <!--Button content -->
-
         </div>
    </aside>
 </div>
 {% endblock side %}
+{# --------------------------End---Clients Card Info----------------------  #}
 
+{# --------------------------Form Card Info-------------------------------  #}
 {% block form %}
 <div class="flex justify-center align-center mx-1 w-full my-5 col-start-2  col-span-2 sm:col-start-2 lg:col-start-2 md:col-start-2 px-2  ">
 <div class="w-full max-w-xl">
-   
     <div class="bg-white shadow rounded-sm  p-3">
         <div class="flex items-center p-0 ">
-            
             <div class="w-auto h-auto mr-2 ">
                 <a href="{{ posts.user_name.profile.get_absolute_url }}">
                 <img class='w-12 h-10 object-cover rounded-lg shadow cursor-pointer' alt='User avatar' src="{{ request.user.profile.image.url }}"></a>
@@ -121,7 +105,6 @@
         </a>
         </div>
         </div>
-        
         <footer class="mt-2">
             <div class="flex justify-evenly content-center">
                 <span class="flex items-center  w-fit h-8 px-2 rounded-full text-gray-400 cursor-pointer">
@@ -138,25 +121,20 @@
                 </span>
             </div>
         </footer>
-
     </div>
-  
 </div>
 </div>
      {% endblock form %} 
+{# --------------------------End---Form Card Info----------------------  #}
      
-     
 
 
 
-
-
-{% block post %}
 
 {# --------------------------Post Container-------------------------------  #}
+{% block post %}
 
                 {% for post in posts %}
-                
                     <div class='max-w-xl my-10 bg-white shadow-md rounded-lg mx-auto '>
                             <div class='w-full'>
 
@@ -294,10 +272,8 @@
                             
                             </div>
                      </div>
-           
-               
                     {% endfor %}  
-                
+    {# ----------------------END----Post Container-------------------------------  #}            
              
 
 
@@ -308,36 +284,28 @@
     {% if is_paginated %}
     <ul class="flex pl-0 list-none rounded my-2">
         {% if page_obj.has_previous %}
-        
         <li class="relative block py-3 px-3 leading-tight bg-white border border-gray-300 text-blue-700 border-r-0 ml-0 rounded-l hover:bg-gray-200">
             <a class="text-cyan-500" href="?page=1">First</a>
-        </li>
-           
+        </li> 
          <li class="relative block py-3  px-3 leading-tight bg-white border border-gray-300 text-blue-700 border-r-0 hover:bg-gray-200">
                 <a class="text-cyan-500"  href="?page={{ page_obj.previous_page_number }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="arcs"><path d="M15 18l-6-6 6-6"></path></svg></a>
         </li>
-            
         {% endif %}
         {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
             <li class="relative block py-3 px-3 leading-tight bg-white border border-gray-300 text-blue-700 border-r-0 hover:bg-gray-200">
                 <a class="text-cyan-500" href="?page={{ num }}">{{ num }}</a></li>
-               
             {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
             <li class="relative block py-3 px-3 leading-tight bg-white border border-gray-300 text-blue-700 border-r-0 hover:bg-gray-200">
                 <a class="text-cyan-500" href="?page={{ num }}">{{ num }}</a></li>
-               
             {% endif %}
         {% endfor %}
-
         {% if page_obj.has_next %}
         <li class="relative block py-3 px-3 leading-tight bg-white border border-gray-300 text-blue-700 border-r-0 hover:bg-gray-200">
             <a class="text-cyan-500"  href="?page={{ page_obj.next_page_number }}"><svg xmlns="http://www.w3.org/2000/svg"  width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="arcs"><path d="M9 18l6-6-6-6"></path></svg></a></li>
-
             <li class="relative block py-3 px-3 leading-tight bg-white border border-gray-300 text-blue-700 rounded-r hover:bg-gray-200">
                 <a class="text-cyan-500" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
-   
         {% endif %}
     </ul>
     {% endif %}
@@ -345,7 +313,7 @@
 
 {# ------------------------END--Paginate Section-------------------------------  #}
 {% endblock post %}
-
+ {# ----------------------END----Post Container-------------------------------  #}            
 {% block jsfiles %}
     <script>
         {% comment %} $(".like").click(function (e) {
