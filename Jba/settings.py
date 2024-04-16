@@ -15,9 +15,6 @@ import os
 from pathlib import Path
 
 
-
-
-
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -39,7 +36,6 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '*'
 ]
-
 
 # Application definition
 
@@ -63,8 +59,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'ckeditor',
     'tagify',
-
-
 ]
 
 ##  TAILWIND CSS CONFIGURATION ##
@@ -73,6 +67,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 NPM_BIN_PATH = '/usr/local/bin/npm'
+
  ####################################
 # settings
 ##  CKEDITOR CONFIGURATION ##
@@ -86,8 +81,6 @@ CKEDITOR_CONFIGS = {
             ['Bold', 'Italic', 'Underline'],
             ['Font', 'FontSize','TextColor', 'BGColor'],
             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            
-            
         ],
     
     },
@@ -135,17 +128,23 @@ WSGI_APPLICATION = 'Jba.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DATABASE_NAME'),
+#         'USER': env('DATABASE_USER'),
+#         'PASSWORD': env('DATABASE_PASS'),
+#         'HOST': 'localhost'
+#     }
+# }
+#
 
 
 # Password validation
@@ -211,16 +210,11 @@ PAYPAL_TEST = True
 # session settings
 CART_SESSION_ID = 'cart'
 
-
-
-
 # Toggle sandbox mode (when running in DEBUG mode)
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
 SENDGRID_ECHO_TO_STDOUT=True
-
-
 
 import dj_database_url
 prod_db  =  dj_database_url.config(conn_max_age=500000000)
