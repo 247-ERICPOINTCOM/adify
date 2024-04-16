@@ -9,29 +9,31 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+
+
+
 from whitenoise import WhiteNoise
 import environ
 import os
 from pathlib import Path
 
-
-# Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+print(BASE_DIR)
 
+# Initialise environment variables
+env_file=os.path.join(BASE_DIR,'.env');
+env = environ.Env()
+env.read_env(env_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env('DEBUG')
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = [
     '*'
@@ -128,23 +130,29 @@ WSGI_APPLICATION = 'Jba.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': env('DEV_DATABASE_ENGINE'),
+            'NAME': env('DEV_DATABASE_NAME'),
+            'USER': env('DEV_DATABASE_USER'),
+            'PASSWORD': env('DEV_DATABASE_PASS'),
+            'HOST': env("DEV_DATABASE_HOST"),
+            'PORT': env("DEV_DATABASE_PORT")
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': env('DATABASE_ENGINE'),
+            'NAME': env('DATABASE_NAME'),
+            'USER': env('DATABASE_USER'),
+            'PASSWORD': env('DATABASE_PASS'),
+            'HOST': env("DATABASE_HOST"),
+            'PORT': env("DATABASE_PORT")
+        }
+    }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env('DATABASE_NAME'),
-#         'USER': env('DATABASE_USER'),
-#         'PASSWORD': env('DATABASE_PASS'),
-#         'HOST': 'localhost'
-#     }
-# }
-#
 
 
 # Password validation
@@ -192,17 +200,18 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 #SMTP Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'apikey'
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 ##  PAYPAL CONFIGURATION ##
 # the email used to create the PayPal account
-PAYPAL_RECEIVER_EMAIL = 'ericbaw@247ericpointcom.site'
+PAYPAL_RECEIVER_EMAIL = env('PAYPAL_RECEIVER_EMAIL')
+
 # is a boolean value sandbox account is used to test things
 PAYPAL_TEST = True
  ####################################
