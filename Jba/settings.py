@@ -28,7 +28,7 @@ env.read_env(env_file)
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = bool(env('DEBUG'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -128,28 +128,16 @@ WSGI_APPLICATION = 'Jba.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': env('DEV_DATABASE_ENGINE'),
-            'NAME': env('DEV_DATABASE_NAME'),
-            'USER': env('DEV_DATABASE_USER'),
-            'PASSWORD': env('DEV_DATABASE_PASS'),
-            'HOST': env("DEV_DATABASE_HOST"),
-            'PORT': env("DEV_DATABASE_PORT")
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': env('DATABASE_ENGINE'),
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASS'),
+        'HOST': env("DATABASE_HOST"),
+        'PORT': env("DATABASE_PORT")
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': env('DATABASE_ENGINE'),
-            'NAME': env('DATABASE_NAME'),
-            'USER': env('DATABASE_USER'),
-            'PASSWORD': env('DATABASE_PASS'),
-            'HOST': env("DATABASE_HOST"),
-            'PORT': env("DATABASE_PORT")
-        }
-    }
+}
 
 
 
