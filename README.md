@@ -1,5 +1,6 @@
 # adify
-https://jobbookads.pythonanywhere.com/
+
+Link to the webapp: [Adify System](https://adifysystem.pythonanywhere.com)
 
 
 # To setup 
@@ -72,7 +73,7 @@ EMAIL_HOST_USER=        <your-value>
 EMAIL_HOST_PASSWORD=    <your-value>
 DEFAULT_FROM_EMAIL=     <your-value>
 
-PAYPAL_RECEIVER_EMAIL<your-value>
+PAYPAL_RECEIVER_EMAIL=  <your-value>
 ```
 
 Ideally, you should set up the database env to be MySQL. PythonAnywhere Free tier

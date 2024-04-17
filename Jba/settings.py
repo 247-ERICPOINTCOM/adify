@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-
-
 from whitenoise import WhiteNoise
 import environ
 import os
@@ -225,8 +223,5 @@ SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
 SENDGRID_ECHO_TO_STDOUT=True
 
-import dj_database_url
-prod_db  =  dj_database_url.config(conn_max_age=500000000)
-DATABASES['default'].update(prod_db)
 
 
