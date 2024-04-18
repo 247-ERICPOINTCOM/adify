@@ -1,4 +1,4 @@
-# adify
+# Adify
 
 Link to the webapp: [Adify System](https://adifysystem.pythonanywhere.com)
 
@@ -58,13 +58,6 @@ DATABASE_PASS=          <your-value>
 DATABASE_HOST=          <your-value>
 DATABASE_PORT=          <your-value>
 
-DEV_DATABASE_ENGINE=    <your-value>
-DEV_DATABASE_NAME=      <your-value>
-DEV_DATABASE_USER=      <your-value>
-DEV_DATABASE_PASS=      <your-value>
-DEV_DATABASE_HOST=      <your-value>
-DEV_DATABASE_PORT=      <your-value>
-
 EMAIL_BACKEND=          <your-value>
 EMAIL_HOST=             <your-value>
 EMAIL_USE_TLS=          <your-value>
@@ -74,16 +67,17 @@ EMAIL_HOST_PASSWORD=    <your-value>
 DEFAULT_FROM_EMAIL=     <your-value>
 
 PAYPAL_RECEIVER_EMAIL=  <your-value>
+
 ```
 
 Ideally, you should set up the database env to be MySQL. PythonAnywhere Free tier
 only allows mysql database connection. 
 
 
-Make sure you have mysqlclient installed [Here](https://github.com/PyMySQL/mysqlclient) is a resource.
+Make sure you have mysqlclient binary installed [Here](https://github.com/PyMySQL/mysqlclient) is a resource.
 
 
-My `sqlclient` required the system to already have `mysql-client` installed and
+`mysqlclient` required the system to already have `mysql-client` installed and
 available on the path, the same goes for pkg-config. Don't forget to refresh
 or resouce the exported variables.
 
@@ -104,5 +98,21 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+---
 
+# For Deployment 
+
+Please define these inside the .env file
+``` env
+PYTHONANYWHERE_USER=    <your-value>
+PYTHONANYWHERE_API_KEY= <your-value>
+PYTHONANYWHERE_HOST=    <your-value>
+PYTHONANYWHERE_DOMAIN=  <your-value>
+```
+
+run the `deploy.py` file to pull the latest main branch from github. 
+Pythonanywhere free-tier doesn't allow for free ssh access; The workaround
+is to use their api to make the requests from a console on their servers. As
+the script currently stands, it requires manually triggering but I will
+reformat the code to run at the end of the CI/CD workflow on github.
 
