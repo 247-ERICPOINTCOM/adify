@@ -1,7 +1,9 @@
 *-temp.*
 .DS_Store
 
+
 # Node-Tailwind
+package-lock.json
 node_modules/
 
 # Django #
