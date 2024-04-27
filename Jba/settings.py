@@ -23,20 +23,15 @@ env_file=os.path.join(BASE_DIR,'.env');
 env = environ.Env()
 env.read_env(env_file)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-
 ALLOWED_HOSTS = [
     '*'
 ]
 
+#----------------------------
 # Application definition
+#----------------------------
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+    'whitenoise.runserver_nostatic',
     'Jbooka.apps.JbookaConfig',
     'users.apps.UsersConfig',
     'feed.apps.FeedConfig',
@@ -60,15 +56,19 @@ INSTALLED_APPS = [
     'tagify',
 ]
 
+#----------------------------
 ##  TAILWIND CSS CONFIGURATION ##
+#----------------------------
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-NPM_BIN_PATH = '/usr/local/bin/npm'
+NPM_BIN_PATH = env('NPM_BIN_PATH')
 
- ####################################
+#----------------------------
 # settings
+#----------------------------
+
 ##  CKEDITOR CONFIGURATION ##
 CKEDITOR_CONFIGS = {
     'default': {
@@ -85,12 +85,14 @@ CKEDITOR_CONFIGS = {
     },
 }
 
- ####################################
+#----------------------------
+# MIDDLEWARE
+#----------------------------
 
 MIDDLEWARE = [
 
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,8 +117,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-
-
             ],
         },
     },
@@ -125,7 +125,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Jba.wsgi.application'
 
 
+#----------------------------
 # Database
+#----------------------------
+
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 DATABASES = {
     'default': {
@@ -140,7 +143,10 @@ DATABASES = {
 
 
 
+#----------------------------
 # Password validation
+#----------------------------
+
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -159,32 +165,40 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+#----------------------------
 # Internationalization
+#----------------------------
+
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
+#----------------------------
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+#----------------------------
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Whitenoise
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
-#SMTP Configuration
+#----------------------------
+# SMTP Configuration
+#----------------------------
+
 EMAIL_BACKEND = env('EMAIL_BACKEND')
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_USE_TLS = env('EMAIL_USE_TLS')
@@ -193,22 +207,33 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
-##  PAYPAL CONFIGURATION ##
+#----------------------------
+#  PAYPAL CONFIGURATION #
+#----------------------------
+
 # the email used to create the PayPal account
 PAYPAL_RECEIVER_EMAIL = env('PAYPAL_RECEIVER_EMAIL')
 
 # is a boolean value sandbox account is used to test things
 PAYPAL_TEST = True
- ####################################
+
+
+
+#----------------------------
+#
+#----------------------------
 
 # session settings
 CART_SESSION_ID = 'cart'
 
+#----------------------------
+#
+#----------------------------
 # Toggle sandbox mode (when running in DEBUG mode)
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 
+#----------------------------
+#
+#----------------------------
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
 SENDGRID_ECHO_TO_STDOUT=True
-
-
-
