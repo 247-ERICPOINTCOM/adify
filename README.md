@@ -3,6 +3,8 @@
 Link to the webapp: [Adify System](https://adifysystem.pythonanywhere.com)
 
 
+
+
 # To setup 
 
 Make sure you're in the project directory:
@@ -115,4 +117,16 @@ Pythonanywhere free-tier doesn't allow for free ssh access; The workaround
 is to use their api to make the requests from a console on their servers. As
 the script currently stands, it requires manually triggering but I will
 reformat the code to run at the end of the CI/CD workflow on github.
+
+---
+
+# Future Helpful Links
+
+
+Migrating to postgres: https://help.pythonanywhere.com/pages/PostgresGettingStarted
+Local Development Version of used Postgres: https://www.postgresql.org/docs/16/release-16-2.html
+
+
+
+---
 

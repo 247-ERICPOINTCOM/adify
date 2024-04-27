@@ -14,6 +14,7 @@ node_modules/
 db.sqlite3
 mydatabase
 media
+staticfiles/
 
 # Backup files # 
 *.bak 
