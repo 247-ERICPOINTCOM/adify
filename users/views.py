@@ -17,6 +17,7 @@ from .models import Profile, FriendRequest
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 import random
 # -----------------------------------------------------------------#
+
 User = get_user_model()
 
 @login_required
