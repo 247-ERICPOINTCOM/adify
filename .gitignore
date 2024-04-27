@@ -1,6 +1,9 @@
 *-temp.*
 .DS_Store
 
+# Node-Tailwind
+node_modules/
+
 # Django #
 *.log
 *.pot
