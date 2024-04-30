@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'whitenoise.runserver_nostatic',
     'Jbooka.apps.JbookaConfig',
     'users.apps.UsersConfig',
@@ -90,10 +91,10 @@ CKEDITOR_CONFIGS = {
 #----------------------------
 
 MIDDLEWARE = [
-
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -229,11 +230,19 @@ CART_SESSION_ID = 'cart'
 #----------------------------
 #
 #----------------------------
+
 # Toggle sandbox mode (when running in DEBUG mode)
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 
 #----------------------------
-#
+# 
 #----------------------------
+
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
 SENDGRID_ECHO_TO_STDOUT=True
+
+#----------------------------
+# Configure CORS settings for cross-origin resource sharing.
+#----------------------------
+CORS_ORIGIN_ALLOW_ALL = True
+
