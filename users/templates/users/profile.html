@@ -1,5 +1,6 @@
 {% extends "feed/layout.html" %} {% load static %}
  {% block searchform %}
+
  {# --------------------------Search Form-------------------------------  #}
 <form
 class="form-inline my-2 my-lg-0 ml-5"
@@ -15,12 +16,13 @@ enctype="multipart/form-data">
     <input type="search" name="q" class="py-2 text-sm text-white border-transparent bg-slate-100 w-96 h-11 rounded-xl pl-10 " placeholder="Search..." autocomplete="off">
   </div>
 </form>
+
 {# ---------------end-----------Search Form-------------------------------  #}
 {% endblock searchform %} {% block content %}
 <br /><br />
-<div class="main-content">
+<div class="main-content flex flex-col items-center justify-center min-h-screen">
   <div class="container mt-7">
-    <div class="row">
+    <div class="row flex justify-center">
       <div class="col-xl-8 m-auto order-xl-2 mb-5 mb-xl-0">
         <div class="card card-profile shadow">
           <div class="row justify-content-center">
@@ -41,7 +43,7 @@ enctype="multipart/form-data">
             class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
           ></div>
           <div class="card-body pt-0 pt-md-4">
-            <div class="row">
+            <div class="row flex flex-col items-center justify-center">
               <div class="col">
                 <div
                   class="card-profile-stats d-flex justify-content-center mt-md-5"
@@ -68,13 +70,14 @@ enctype="multipart/form-data">
             <div class="text-center">
               <h3>{{ u }}</h3>
 
-             <p>Email: {{ u.profile.email }}</p>
-             <p>Address: {{ u.profile.location }}</p>
-             <p>Business Name: {{ u.profile.business }}</p>
+              <p>Email: {{ u.profile.email }}</p>
+              <p>Address: {{ u.profile.location }}</p>
+              <p>Business Name: {{ u.profile.business }}</p>
               <p>About: {{ u.profile.bio }}</p>
-            <p> Rate Us Below</p>
+              <p> Rate Us Below</p>
 
               <hr class="my-2" />
+
               {% if request.user == u %}
               <a class="btn btn-info" href="{% url 'edit_profile' %}"
                 >Edit Your Profile</a
@@ -125,6 +128,7 @@ enctype="multipart/form-data">
       </div>
     </div>
     <br />
+
     {% comment %} if this is my profile show me this {% endcomment %}
     {% if request.user == u %}
     <div class="row">
