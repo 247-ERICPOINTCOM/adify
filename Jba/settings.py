@@ -86,11 +86,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-<<<<<<< HEAD
-#----------------------------                                                                                                                             
-=======
 #----------------------------
->>>>>>> 3f7d2b6988d102b94035989cbb1eec72e836ea7c
 # MIDDLEWARE
 #----------------------------
 
@@ -134,7 +130,6 @@ WSGI_APPLICATION = 'Jba.wsgi.application'
 # Database
 #----------------------------
 
-<<<<<<< HEAD
 # # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # DATABASES = {
 #     'default': {
@@ -150,17 +145,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'db.sqlite3', 
-=======
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': env('DATABASE_ENGINE'),
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
-        'HOST': env("DATABASE_HOST"),
-        'PORT': env("DATABASE_PORT")
->>>>>>> 3f7d2b6988d102b94035989cbb1eec72e836ea7c
     }
 }
 
@@ -169,11 +153,6 @@ DATABASES = {
 #----------------------------
 # Password validation
 #----------------------------
-<<<<<<< HEAD
-=======
-
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
->>>>>>> 3f7d2b6988d102b94035989cbb1eec72e836ea7c
 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
                                                                                                                                                           
@@ -271,9 +250,5 @@ SENDGRID_ECHO_TO_STDOUT=True
 #----------------------------
 # Configure CORS settings for cross-origin resource sharing.
 #----------------------------
-<<<<<<< HEAD
 CORS_ORIGIN_ALLOW_ALL = True                                                                                                                              
-=======
-CORS_ORIGIN_ALLOW_ALL = True
->>>>>>> 3f7d2b6988d102b94035989cbb1eec72e836ea7c
 
