@@ -18,26 +18,19 @@ def validate_email(value):
     if User.objects.filter(email = value).exists():
         raise ValidationError((f"{value} is taken."),params = {'value':value})
 
-
-
-
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField(validators = [validate_email])
 
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
+
 def save(self, commit=True):
          user=super(UserRegisterForm,self)
          
          if commit:
              user.save()
              return user
-             
-         
-      
-
-
 
 class UserUpdateForm(forms.ModelForm):
 	email = forms.EmailField(validators = [validate_email])

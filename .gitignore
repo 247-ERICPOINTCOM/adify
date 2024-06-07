@@ -1,13 +1,24 @@
+<<<<<<< HEAD
 .DS_Store
 node_modules/
 package-lock.json
+=======
+*-temp.*
+.DS_Store
+
+
+# Node-Tailwind
+package-lock.json
+node_modules/
+>>>>>>> 3f7d2b6988d102b94035989cbb1eec72e836ea7c
 
 # Django #
 *.log
 *.pot
 *.pyc
-__pycache__
+**/__pycache__/**
 db.sqlite3
+mydatabase
 media
 
 # Backup files # 
@@ -56,7 +67,7 @@ atlassian-ide-plugin.xml
 # Distribution / packaging 
 .Python build/ 
 develop-eggs/ 
-dist/ 
+# dist/ 
 downloads/ 
 eggs/ 
 .eggs/ 

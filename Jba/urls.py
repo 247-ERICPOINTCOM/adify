@@ -32,23 +32,18 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'paypal/', include('paypal.standard.ipn.urls')),
-    
     path("__reload__/", include("django_browser_reload.urls")),
-    
-    
-
-
-
     path('', include('feed.urls')),
+
     path('users/', user_views.users_list, name='users_list'),
     path('users/<slug>/', user_views.profile_view, name='profile_view'),
     path('friends/', user_views.friend_list, name='friend_list'),
+
     # send  request friend
     path('users/friend-request/send/<int:id>/', user_views.send_friend_request, name='send_friend_request'), 
-    # remove request friend
     path('users/friend-request/cancel/<int:id>/', user_views.cancel_friend_request, name='cancel_friend_request'),
-    #  accept request 
     path('users/friend-request/accept/<int:id>/', user_views.accept_friend_request, name='accept_friend_request'),
+
     # decline request
     path('users/friend-request/delete/<int:id>/', user_views.delete_friend_request, name='delete_friend_request'),
     path('users/friend/delete/<int:id>/', user_views.delete_friend, name='delete_friend'),
@@ -58,16 +53,10 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html',html_email_template_name='email/password_reset_html_email.html',subject_template_name= 'email/password_reset_subject.txt' ),
-         name='password_reset'),
-    path('password-reset/done/', auth_views.PasswordResetView.as_view(template_name='users/password_reset_done.html'),
-         name='password_reset_done'),
-    path('password-reset-confirm/<uidb64>/<token>/',
-         auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),
-         name='password_reset_confirm'),
-    path('password-reset-complete/',
-         auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
-         name='password_reset_complete'),
+    path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html',html_email_template_name='email/password_reset_html_email.html',subject_template_name= 'email/password_reset_subject.txt' ), name='password_reset'),
+    path('password-reset/done/', auth_views.PasswordResetView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
+    path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
 
 ]
 
