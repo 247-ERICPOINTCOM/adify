@@ -1,6 +1,5 @@
 from cProfile import label
 from logging import PlaceHolder
-from tkinter import Widget
 from django import forms
 from .models import Comments, Post
 from tagify.fields import TagField
