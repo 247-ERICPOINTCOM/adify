@@ -13,6 +13,7 @@ Make sure you're in the project directory:
 cd /path/to/adify
 ```
 
+It's important to specify your **version number**! Or go one level lower to source the activate function. 
 Set up your environment to have python-3.10. At the time of writing this
 python-3.12 is out and Python anywhere only has 3.10 available. So ideally
 your environment should also reflect that. I would recommend that you just
