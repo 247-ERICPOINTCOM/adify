@@ -27,11 +27,12 @@ path/to/python-3.10 -m venv venv
 
 
 then run the env: 
-Linux:
+For Linux:
 ``` bash
 source ./venv/bin/activate 
 ```
-``bash
+For Windows:
+```
 C:\> <venv>\Scripts\activate.bat
 ```
 
