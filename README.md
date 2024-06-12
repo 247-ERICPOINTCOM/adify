@@ -33,7 +33,7 @@ source ./venv/bin/activate
 ```
 For Windows:
 ```
-C:\> venv\Scripts\activate.bat
+venv\Scripts\activate.bat
 ```
 
 if you want to turn it off you can run:
