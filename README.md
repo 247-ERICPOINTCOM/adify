@@ -27,11 +27,13 @@ path/to/python-3.10 -m venv venv
 
 
 then run the env: 
-
+Linux:
 ``` bash
 source ./venv/bin/activate 
 ```
-
+``bash
+C:\> <venv>\Scripts\activate.bat
+```
 
 if you want to turn it off you can run:
 
