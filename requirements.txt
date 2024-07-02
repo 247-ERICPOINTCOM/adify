@@ -23,7 +23,7 @@ django-paypal==2.0
 django-tagify2==1.0.19
 django-tailwind==3.3.0
 django-widget-tweaks==1.4.12
-filelock==3.0.12
+#filelock==3.0.12
 idna==3.3
 kombu==5.2.4
 mysqlclient==2.2.4
@@ -32,9 +32,9 @@ Pillow==9.1.1
 pluggy==0.13.1
 prometheus-client==0.8.0
 prompt-toolkit==3.0.19
-psycopg-binary==3.1.18
-psycopg-pool==3.2.1
-psycopg2==2.9.9
+#psycopg-binary==3.1.18
+#psycopg-pool==3.2.1
+#psycopg2==2.9.9
 py==1.10.0
 pycparser==2.20
 PyJWT==1.7.1
